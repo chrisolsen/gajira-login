@@ -79,8 +79,8 @@ class Jira {
     }
 
     if (headers.Authorization === undefined) {
-      headers.Authorization = `Bearer ${this.token}, Basic ${Buffer.from(`${this.email}:${this.token}`).toString('base64')}`
-      console.log('Running auth', headers.Authorization)
+      headers.Authorization = `Bearer ${this.token}`
+      console.log('Running auth ===:', headers.Authorization, ':===')
     }
 
     // strong check for undefined

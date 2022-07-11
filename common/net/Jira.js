@@ -13,7 +13,7 @@ class Jira {
 
   async getMyself () {
     return this.fetch('getMyself',
-      { pathname: '/rest/api/2/myself' }, {
+      { pathname: '/rest/api/3/myself' }, {
         method: 'GET',
       })
   }
@@ -54,7 +54,7 @@ class Jira {
 
   async transitionIssue (issueId, data) {
     return this.fetch('transitionIssue', {
-      pathname: `/rest/api/2/issue/${issueId}/transitions`,
+      pathname: `/rest/api/3/issue/${issueId}/transitions`,
     }, {
       method: 'POST',
       body: data,
@@ -79,8 +79,8 @@ class Jira {
     }
 
     if (headers.Authorization === undefined) {
-      // headers.Authorization = `Basic ${Buffer.from(`${this.email}:${this.token}`).toString('base64')}`
-      headers.Authorization = `Bearer ${this.token}`
+      headers.Authorization = `Bearer ${this.token}, Basic ${Buffer.from(`${this.email}:${this.token}`).toString('base64')}`
+      console.log('Running auth', headers.Authorization)
     }
 
     // strong check for undefined
